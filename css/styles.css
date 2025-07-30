@@ -1,0 +1,649 @@
+:root {
+    --azul-oscuro: rgba(0, 20, 51, 1);
+    --verde: rgba(10, 207, 131, 1);
+    --naranja: rgba(179, 53, 3, 1);
+    --blanco: rgba(250, 249, 243, 1);
+    --transicion: all 0.3s ease;
+     --font-size-body: 1rem;   /* Equivalente a 16px si la base es 16px */
+    --font-size-small: 0.9rem;    /* 14.4px, para texto secundario */
+    --line-height-base: 1.6;      /* Ajustado para el nuevo tamaño del cuerpo */
+    --line-height-small: 1.5;
+    /* Jerarquía Tipográfica de Encabezados GEMINI*/ 
+    --font-size-h1: 3rem;  /* Título principal de la página (Hero) - aprox. 56px */
+    --font-size-h2: 2.5rem;  /* Títulos de sección - aprox. 40px */
+    --font-size-h3: 1.75rem; /* Títulos de subsección/tarjeta - aprox. 28px */
+    --font-size-h4: 1.3rem;  /* Títulos menores/subtítulos - aprox. 20.8px */
+
+    /* Opcional: Line heights específicos para encabezados */
+    --line-height-heading: 1.2;
+    --line-height-subheading: 1.3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body { /* GEMINI*/
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--blanco);
+    color: var(--azul-oscuro);
+    font-size: var(--font-size-body); /* Ahora 16px */
+    line-height: var(--line-height-base); /* Ahora 1.6 */
+}
+/* --- Encabezados --- */
+.logo {
+    font-size: var(--font-size-h3);
+    font-weight: 300;
+    color: var(--blanco);
+    text-decoration: none;
+}
+
+/* h1 - Idealmente para el título principal del Hero Section */
+h1 {
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-heading);
+    margin-bottom: 2rem;
+    color: var(--verde); /* Ajusta según el contexto */
+}
+/* h2 - Para títulos de sección como "Servicios", "Proyectos" */
+.section-title h2 {
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-heading);
+    display: inline-block;
+    color: var(--azul-oscuro); /* O el color que desees para los títulos de sección */
+}
+
+
+/* h3 - Para títulos de subsecciones o tarjetas */
+.servicio-card h3 {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-subheading);
+    margin-bottom: 1rem;
+    color: var(--azul-oscuro); /* O el color por defecto que desees para h3 */
+}
+.proyecto-info h3 {
+    font-size: var(--font-size-h4); /* Podría ser un h4 o un h3 ligeramente más pequeño si es intencional */
+    line-height: var(--line-height-subheading);
+    margin-bottom: 0.8rem;
+    color: var(--azul-oscuro); /* O el color por defecto */
+}
+
+.footer-info h3 {
+    font-size: var(--font-size-h3); /* Unificar con el h3 principal */
+    line-height: var(--line-height-subheading);
+    margin-bottom: 1.25rem;
+    color: var(--blanco);
+}
+.footer-links h4 {
+    font-size: var(--font-size-h4);
+    margin-bottom: 1.25rem;
+}
+h4 {
+    color: var(--verde);
+    letter-spacing: 0.1rem;
+}
+/* Otros elementos con peso visual de encabezado */
+.logo {
+    text-decoration: none;
+}
+
+/* Pequeño ajuste para el subtítulo dentro de "Sobre Mí" */
+.subtitulo {
+    font-size: var(--font-size-h4); /* O un tamaño similar si lo consideras un tipo de h4 */
+    color: var(--verde);
+}
+p .small {
+    --font-size-small: 0.9rem; 
+}
+
+
+/*--------------FIN ENCABEZADOS---------------*/
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* Header y Navegación */
+header {
+    background-color: var(--azul-oscuro);
+    padding: 1.25rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+/* --- ESTILOS NUEVOS/MODIFICADOS PARA EL LOGO --- */
+
+/* La clase que envuelve la imagen del logo */
+.logo-container { /* Esta es la nueva clase para el <a>, si la usas */
+    display: flex; /* Para que sea un contenedor flex y podamos centrar la imagen si es necesario */
+    align-items: center; /* Centra verticalmente la imagen dentro de este enlace si es más alto */
+    text-decoration: none; /* Quita el subrayado por defecto del enlace */
+    height: 100%; /* Asegura que ocupe la altura disponible en la nav/header */
+}
+
+/* La imagen real del logo */
+.logo-img { /* Esta es la nueva clase para tu <img> */
+    height: 2.5rem; /* Ajusta esta altura (40px) para que tu logo tenga un tamaño deseado */
+                    /* Prueba con 2rem, 2.5rem, 3rem... lo que mejor se vea. */
+    width: auto;    /* ¡Esencial para mantener la proporción de la imagen! */
+    display: block; /* Elimina cualquier espacio extra debajo de la imagen (por defecto es inline) */
+    /* Asegúrate de que no haya otros estilos que lo estén sacando del flujo, como position: absolute; */
+    position: static; /* Asegura que está en el flujo normal */
+}
+
+/* --- FIN ESTILOS NUEVOS/MODIFICADOS PARA EL LOGO --- */
+
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 1.875rem;
+}
+
+.nav-links a {
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transicion);
+}
+
+.nav-links a:hover {
+    color: var(--verde);
+    
+}
+
+ #contacto {
+    border: solid 2px rgba(179, 53, 3, 1);
+    border-radius: 8px;
+    padding: 0.625rem;
+  }
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    color: var(--blanco);
+    font-size: 24px;
+}
+/* HERO*/
+/* Estilos para la Sección Hero */
+
+
+.hero-content {
+   border-radius: 1.8rem;
+    background-color: var(--azul-oscuro);
+    color: #766666; /* Color de texto predeterminado para el hero */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: start; /* Centra el contenido verticalmente */
+    min-height: 50vh; /* Altura mínima de la sección, ajusta según necesidad */
+    padding: 1.875rem 1.875rem 1.875rem 3.75rem;
+    box-sizing: border-box; /* Asegura que el padding no añada al width/height total */
+    margin-top: 200px;
+    margin-bottom: 2.125rem;
+    text-align: left; /* Alineación del texto y botón a la izquierda dentro de su contenedor */
+   
+}
+
+.typewriter-header {
+    font-size: clamp(2em, 5vw, 3.5em); /* Tamaño de fuente responsivo */
+    color:var(--verde); /* El color verde vibrante */
+    font-weight: bold;
+    margin: 20px 0 30px; /* Margen para separar del botón */
+    white-space: wrap; /* Evita que el texto se rompa en varias líneas */
+    overflow: hidden; /* Esconde el texto que no se ha "escrito" */
+    display: inline-block; /* Necesario para que el overflow y border-right funcionen */
+    
+}
+
+/* Animación del cursor parpadeante (solo se aplica cuando la clase 'blinking-cursor' está presente) */
+@keyframes blink {
+    from, to { border-color: transparent; }
+    50% { border-color: #00FF99; }
+}
+
+.blinking-cursor {
+    animation: blink 0.75s step-end infinite;
+}
+/* FIN DE LA ANIMACION*/
+.hero-content h3 {
+    color:var(--blanco);
+}
+.cta-button {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  margin-top:1.25rem;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  background-color: var(--verde);
+  color: var(--azul-oscuro);
+}
+
+
+
+/* Consideración para el NAV fijo:
+   Si tu NAV fijo ocupa un espacio significativo en la parte superior,
+   y quieres que el hero empiece justo debajo de él sin que el NAV
+   cubra parte del hero, podrías añadir un padding-top al hero-section
+   igual a la altura de tu NAV. Por ejemplo:
+   .hero-section {
+       padding-top: 80px; // Asumiendo que tu NAV tiene 80px de altura
+   }
+   O, si el NAV tiene `position: fixed` y no ocupa espacio en el flujo normal,
+   entonces no es necesario ajustar el padding-top del hero.
+*/
+
+
+/* Sobre Mí Section */
+#sobre-mi {
+    scroll-margin-top: 80px; /* Ajusta este valor a la altura de tu header fijo, por ejemplo, 70px + un pequeño margen de 10px */
+}
+
+.sobre-mi {
+    margin: 5.125rem 0 1.25rem 0;
+    }
+
+.sobre-mi-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3.125rem;
+    align-items:end;
+    justify-items: left;
+    padding: 1.875rem 1.875rem 1.875rem 3.75rem;
+    
+   }
+
+.sobre-mi-img {
+    border-radius: 10px;
+    overflow: hidden;
+   /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);*/
+   width: 250px;
+   height: 250px;
+
+}
+
+.sobre-mi-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    
+}
+
+.sobre-mi-text {
+    justify-items: left;
+}
+.sobre-mi-text p {
+    font-size:var(--font-size-body);
+    color:var(--azul-oscuro);
+}
+
+/* Servicios Section */
+#servicios {
+    scroll-margin-top: 80px; /* Ajusta este valor a la altura de tu header fijo, por ejemplo, 70px + un pequeño margen de 10px */
+}
+.servicios {
+    margin: 5.125rem 0;
+    background-color: rgba(250, 249, 243, 0.95);
+    padding-top: 2rem;
+}
+
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.875rem;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    position: relative;
+    justify-items: center;
+}
+
+
+.section-title h2::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 3px;
+    /*background-color: var(--verde);*/
+    margin: 0.625rem auto 0;
+}
+.servicio-card {
+    background-color: var(--blanco);
+    border-radius: 10px;
+    padding: 1.875rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: var(--transicion);
+    display: grid;
+    justify-items: center;
+    
+    
+}
+
+.servicio-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.servicio-icon {
+    margin-bottom: 1.25rem;
+    align-items: center;
+    justify-items: center;
+}
+.servicio-p {
+    text-align:center;
+   
+}
+
+
+/* Proyectos Section */
+#proyectos {
+    scroll-margin-top: 80px; /* Ajusta este valor a la altura de tu header fijo, por ejemplo, 70px + un pequeño margen de 10px */
+}
+.proyectos {
+    margin: 5.125rem 0;
+    padding-top: 2rem;
+}
+
+.proyectos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.875rem;
+}
+
+.proyecto-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transicion);
+    position: relative;
+}
+
+.proyecto-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.proyecto-img {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+}
+
+.proyecto-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transicion);
+}
+
+.proyecto-card:hover .proyecto-img img {
+    transform: scale(1.05);
+}
+
+.proyecto-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(35, 42, 85, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: var(--transicion);
+}
+
+.proyecto-card:hover .proyecto-overlay {
+    opacity: 1;
+}
+
+.proyecto-links {
+    display: flex;
+    gap:0.9375rem;
+}
+
+.proyecto-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.125rem;
+    height: 3.125rem;
+    background-color: var(--blanco);
+    color: var(--azul-oscuro);
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: var(--transicion);
+}
+
+.proyecto-links a:hover {
+    background-color: var(--naranja);
+    color: var(--blanco);
+}
+
+.proyecto-info {
+    padding: 1.2rem;
+    background-color: var(--blanco);
+}
+
+.proyecto-info p {
+    color: var(--azul-oscuro);
+    margin-bottom: 0.9rem;
+}
+
+.proyecto-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+.proyecto-tag {
+    background-color: rgba(244, 202, 148, 0.1);
+    color: var(--naranja);
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: var(--font-size-small);
+}
+
+/* Footer */
+footer {
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    padding: 3.75rem 0 1.875rem;
+}
+
+.footer-content {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.125rem;
+    margin-bottom: 2.5rem;
+   align-items: baseline;
+}
+
+
+.footer-info p {
+    margin-bottom: 1rem;
+}
+
+.whatsapp {
+    color: var(--verde);
+    letter-spacing: 0.2rem;
+}
+.footer-links {
+    justify-self: end;
+}
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color:var(--verde);
+    color: var(--azul-oscuro);
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: var(--transicion);
+}
+
+.social-links a:hover {
+    background-color: var(--blanco);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1.875rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .sobre-mi-content {
+        grid-template-columns: 1fr;
+        gap: 1.875rem;
+    }
+
+    .sobre-mi-img {
+        order: -1;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--azul-oscuro);
+        flex-direction: column;
+        align-items: center;
+        padding: 1.25rem 0;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: var(--transicion);
+    }
+
+    .nav-links.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .nav-links li {
+        margin: 1rem 0;
+    }
+
+ 
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.875rem;
+    }
+}
+
+@media (max-width: 576px) {
+ 
+
+    .section-title h2 {
+        font-size: 2rem;
+    }
+
+    .proyectos-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-links {
+    justify-self: start;
+}}
+
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .sobre-mi-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .sobre-mi-img {
+        order: -1;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--azul-oscuro);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: var(--transicion);
+    }
+
+    .nav-links.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .nav-links li {
+        margin: 1rem 0;
+    }
+
+ 
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+ 
+
+    .section-title h2 {
+        font-size: 2rem;
+    }
+
+    .proyectos-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-links {
+    justify-self: start;
+}}
