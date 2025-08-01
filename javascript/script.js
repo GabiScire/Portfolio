@@ -1,53 +1,70 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const typewriterTextElement = document.getElementById('typewriter-text');
-    const phrases = [
-        "Las buenas experiencias visuales conectan.",
-        //"Creamos sitios web que inspiran.",
-        //"Transformamos ideas en experiencias memorables."
-    ];
+// Script para la navegación responsive
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
 
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    const typingSpeed = 70;
-    const erasingSpeed = 40;
-    const pauseAfterTyping = 1500;
-    const pauseAfterErasing = 500;
-
-    function typeWriterEffect() {
-        const currentPhrase = phrases[phraseIndex];
-
-        // Controlar el parpadeo del cursor:
-        if (charIndex === currentPhrase.length && !isDeleting) {
-            typewriterTextElement.classList.add('blinking-cursor');
-        } else if (charIndex === 0 && isDeleting) {
-             typewriterTextElement.classList.remove('blinking-cursor');
-        } else {
-            typewriterTextElement.classList.remove('blinking-cursor');
-        }
-
-        if (!isDeleting) {
-            if (charIndex < currentPhrase.length) {
-                typewriterTextElement.textContent += currentPhrase.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriterEffect, typingSpeed + Math.random() * 30);
-            } else {
-                isDeleting = true;
-                setTimeout(typeWriterEffect, pauseAfterTyping);
-            }
-        } else {
-            if (charIndex > 0) {
-                typewriterTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-                setTimeout(typeWriterEffect, erasingSpeed + Math.random() * 10);
-            } else {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                setTimeout(typeWriterEffect, pauseAfterErasing);
-            }
-        }
-    }
-
-    typeWriterEffect();
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
 });
+
+// Cerrar el menú cuando se hace clic en un enlace
+const navItems = document.querySelectorAll('.nav-links a');
+navItems.forEach(item => {
+    item.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+    });
+});
+
+// Desplazamiento suave
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            const headerOffset = 80;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Animación al hacer scroll
+document.addEventListener('DOMContentLoaded', () => {
+    // Agregar animación a las secciones al hacer scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    // Observar secciones
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    // Observar cards de servicios
+    const servicioCards = document.querySelectorAll('.servicio-card');
+    servicioCards.forEach((card, index) => {
+        // Agregar delay incremental para efecto en cascada
+        card.style.transitionDelay = `${index * 0.1}s`;
+        observer.observe(card);
+    });
+
+    // Observar cards de proyectos
+    const proyectoCards = document.querySelectorAll('.proyecto-card');
+    proyectoCards.forEach((card, index) => {
+        card.style.transitionDelay = `${index * 0.1}s`;
+        observer.observe(card);
+    });
+});
+
